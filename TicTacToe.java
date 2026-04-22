@@ -1,23 +1,37 @@
-import java.util.Scanner;
-
 public class TicTacToe {
 
-    // Method to convert slot to row and column
-    public static int[] convertSlotToPosition(int slot) {
-        int row = (slot - 1) / 3;
-        int col = (slot - 1) % 3;
-        return new int[]{row, col};
+    // Method to validate move
+    public static boolean isValidMove(char[][] board, int row, int col) {
+
+        // Check boundaries
+        if (row < 0 || row > 2 || col < 0 || col > 2) {
+            return false;
+        }
+
+        // Check if cell is empty
+        if (board[row][col] != '-') {
+            return false;
+        }
+
+        return true;
     }
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter slot (1-9): ");
-        int slot = scanner.nextInt();
+        // Sample board
+        char[][] board = {
+                {'-', '-', '-'},
+                {'-', '-', '-'},
+                {'-', '-', '-'}
+        };
 
-        int[] position = convertSlotToPosition(slot);
+        int row = 1;
+        int col = 1;
 
-        System.out.println("Row: " + position[0]);
-        System.out.println("Column: " + position[1]);
+        if (isValidMove(board, row, col)) {
+            System.out.println("Valid Move");
+        } else {
+            System.out.println("Invalid Move");
+        }
     }
 }
